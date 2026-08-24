@@ -126,7 +126,7 @@ export function AgentsSection() {
   }
 
   return (
-    <SectionContainer id="agentes" className="border-t border-ink-900">
+    <SectionContainer id="agentes" showBackground={false}>
       <SectionHeading
         eyebrow="Biblioteca"
         title="Agentes recomendados"

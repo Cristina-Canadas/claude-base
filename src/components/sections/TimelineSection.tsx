@@ -125,7 +125,7 @@ export function TimelineSection() {
   }
 
   return (
-    <SectionContainer id="flujo" className="border-t border-ink-900">
+    <SectionContainer id="flujo" showBackground={false}>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <SectionHeading
           eyebrow="Flujo recomendado"

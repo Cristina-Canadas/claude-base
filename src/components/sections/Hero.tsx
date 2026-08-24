@@ -85,20 +85,26 @@ export function Hero() {
             ref={wrapRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="relative flex h-[320px] w-[320px] items-center justify-center sm:h-[420px] sm:w-[420px] lg:h-[480px] lg:w-[480px] lg:translate-x-10"
+            className="relative flex h-[380px] w-[380px] items-center justify-center sm:h-[480px] sm:w-[480px] lg:h-[560px] lg:w-[560px] lg:translate-x-10"
           >
             <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(242,96,12,0.35),transparent_70%)] blur-2xl" />
-            <motion.img
-              src="/Claude_AI_symbol.svg.webp"
-              alt="Símbolo de Claude AI"
-              animate={{
-                x: tilt.x * 40,
-                y: tilt.y * 40,
-                rotate: tilt.x * 12,
-              }}
-              transition={{ type: "spring", stiffness: 120, damping: 12 }}
-              className="relative w-full drop-shadow-[0_35px_60px_rgba(242,96,12,0.35)]"
-            />
+            <motion.div
+              animate={{ y: [0, -16, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="w-full"
+            >
+              <motion.img
+                src="/Claude_AI_symbol.svg.webp"
+                alt="Símbolo de Claude AI"
+                animate={{
+                  x: tilt.x * 40,
+                  y: tilt.y * 40,
+                  rotate: tilt.x * 12,
+                }}
+                transition={{ type: "spring", stiffness: 120, damping: 12 }}
+                className="relative w-full drop-shadow-[0_35px_60px_rgba(242,96,12,0.35)]"
+              />
+            </motion.div>
           </div>
         </motion.div>
       </div>

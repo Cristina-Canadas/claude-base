@@ -6,7 +6,8 @@ const NAV_LINKS = [
   { href: "#comandos", label: "Comandos" },
   { href: "#agentes", label: "Agentes" },
   { href: "#skills", label: "Skills" },
-  { href: "#checklist", label: "Checklist" },
+  { href: "#guia", label: "Guía" },
+  { href: "#comunidad", label: "Comunidad" },
 ];
 
 export function Navbar() {

@@ -142,7 +142,7 @@ export function SkillsSection() {
   }
 
   return (
-    <SectionContainer id="skills" className="border-t border-ink-900">
+    <SectionContainer id="skills">
       <SectionHeading
         eyebrow="Biblioteca"
         title="Skills útiles"

@@ -64,15 +64,33 @@ export interface PracticeItem {
   description: string;
 }
 
-export interface ChecklistItemData {
-  id: string;
-  label: string;
-}
-
 export interface TimelineStepData {
   id: string;
   icon: LucideIcon;
   title: string;
   description: string;
   code?: string;
+}
+
+export interface GuideCardData {
+  id: string;
+  icon: LucideIcon;
+  title: string;
+  tagline: string;
+  location: string;
+  invocation: string;
+  whenToUse: string[];
+  docsUrl: string;
+}
+
+export type CommunityResourceCategory = "Directorio" | "Agentes" | "Skills" | "MCPs";
+
+export interface CommunityResourceData {
+  id: string;
+  title: string;
+  description: string;
+  url: string;
+  category: CommunityResourceCategory;
+  /** GitHub star count at time of writing, for repos only. */
+  stars?: number;
 }

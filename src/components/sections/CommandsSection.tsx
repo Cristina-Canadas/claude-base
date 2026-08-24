@@ -53,7 +53,7 @@ function CommandCard({ command }: { command: CommandItem }) {
 
 export function CommandsSection() {
   return (
-    <SectionContainer id="comandos" className="border-t border-ink-900">
+    <SectionContainer id="comandos">
       <SectionHeading
         eyebrow="Biblioteca"
         title="Comandos esenciales"

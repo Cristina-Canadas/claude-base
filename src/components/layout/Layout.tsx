@@ -5,7 +5,7 @@ import { ScrollToTopButton } from "../ui/ScrollToTopButton";
 
 export function Layout() {
   return (
-    <div id="top" className="min-h-screen bg-ink-950 text-ink-50">
+    <div id="top" className="min-h-screen overflow-x-hidden bg-ink-950 text-ink-50">
       <Navbar />
       <Outlet />
       <Footer />

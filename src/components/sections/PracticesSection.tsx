@@ -6,7 +6,7 @@ import { PRACTICES } from "../../data/practices";
 
 export function PracticesSection() {
   return (
-    <SectionContainer id="practicas" className="border-t border-ink-900">
+    <SectionContainer id="practicas" showBackground={false}>
       <SectionHeading
         eyebrow="Centro de buenas prácticas"
         title="Hábitos que marcan la diferencia"
