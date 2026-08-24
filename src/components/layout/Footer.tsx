@@ -1,6 +1,6 @@
 import { Terminal } from "lucide-react";
 
-const GITHUB_URL = "https://github.com/tu-usuario/claude-base";
+const GITHUB_URL = "https://github.com/Cristina-Canadas/claude-base";
 
 function GithubIcon({ className = "" }: { className?: string }) {
   return (
