@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { Check, Copy, Bot, Terminal, ChevronDown, ExternalLink } from "lucide-react";
-import { motion } from "framer-motion";
 import { SectionContainer } from "../layout/SectionContainer";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Card } from "../ui/Card";
@@ -115,14 +114,23 @@ const INITIAL_VISIBLE = 6;
 export function AgentsSection() {
   const [active, setActive] = useState<AgentCategory | "Todos">("Todos");
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
+  const [, startTransition] = useTransition();
 
   const filtered =
     active === "Todos" ? AGENTS : AGENTS.filter((a) => a.category === active);
   const visible = filtered.slice(0, visibleCount);
 
   function handleCategoryChange(category: AgentCategory | "Todos") {
-    setActive(category);
-    setVisibleCount(INITIAL_VISIBLE);
+    startTransition(() => {
+      setActive(category);
+      setVisibleCount(INITIAL_VISIBLE);
+    });
+  }
+
+  function handleShowMore() {
+    startTransition(() => {
+      setVisibleCount((count) => count + INITIAL_VISIBLE);
+    });
   }
 
   return (
@@ -169,22 +177,19 @@ export function AgentsSection() {
         ))}
       </div>
 
-      <motion.div
-        layout
-        className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-      >
+      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {visible.map((agent) => (
-          <motion.div key={agent.id} layout className="min-w-0">
+          <div key={agent.id} className="min-w-0">
             <AgentCard agent={agent} />
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
 
       {visibleCount < filtered.length && (
         <div className="mt-8 flex justify-center">
           <button
             type="button"
-            onClick={() => setVisibleCount((count) => count + INITIAL_VISIBLE)}
+            onClick={handleShowMore}
             className="flex items-center gap-2 rounded-full bg-ink-900 px-5 py-2.5 text-sm text-ink-300 transition-colors hover:text-brand-400"
           >
             Ver más agentes

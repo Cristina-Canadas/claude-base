@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import {
   Check,
   Copy,
@@ -19,7 +19,6 @@ import {
   Workflow,
   Wand2,
 } from "lucide-react";
-import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import { SectionContainer } from "../layout/SectionContainer";
 import { SectionHeading } from "../ui/SectionHeading";
@@ -131,14 +130,23 @@ function SkillCard({ skill }: { skill: SkillItem }) {
 export function SkillsSection() {
   const [active, setActive] = useState<string>("Todos");
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
+  const [, startTransition] = useTransition();
 
   const filtered =
     active === "Todos" ? SKILLS : SKILLS.filter((s) => s.category === active);
   const visible = filtered.slice(0, visibleCount);
 
   function handleCategoryChange(category: string) {
-    setActive(category);
-    setVisibleCount(INITIAL_VISIBLE);
+    startTransition(() => {
+      setActive(category);
+      setVisibleCount(INITIAL_VISIBLE);
+    });
+  }
+
+  function handleShowMore() {
+    startTransition(() => {
+      setVisibleCount((count) => count + INITIAL_VISIBLE);
+    });
   }
 
   return (
@@ -185,19 +193,19 @@ export function SkillsSection() {
         ))}
       </div>
 
-      <motion.div layout className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {visible.map((skill) => (
-          <motion.div key={skill.id} layout className="min-w-0">
+          <div key={skill.id} className="min-w-0">
             <SkillCard skill={skill} />
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
 
       {visibleCount < filtered.length && (
         <div className="mt-8 flex justify-center">
           <button
             type="button"
-            onClick={() => setVisibleCount((count) => count + INITIAL_VISIBLE)}
+            onClick={handleShowMore}
             className="flex items-center gap-2 rounded-full bg-ink-900 px-5 py-2.5 text-sm text-ink-300 transition-colors hover:text-brand-400"
           >
             Ver más skills
